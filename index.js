@@ -21,16 +21,22 @@ app.get("/health", (req, res) => {
   });
 });
 
+app.get("/mensaje", (req, res) => {
+  res.json({
+    mensaje: "Michael Labajos lo hizo"
+  });
+});
+
 async function start() {
   try {
     await mongoose.connect(uri);
-    console.log("Connected to MongoDB");
+    console.log("Conectando a MongoDB realizado por Michael Labajos Detquizan");
 
     app.listen(port, () => {
-      console.log(`App listening on port ${port}`);
+      console.log(`Api escuchando por el puerto: ${port}`);
     });
   } catch (error) {
-    console.error("Startup error:", error.message);
+    console.error("No se pudo iniciar el servicio:", error.message);
     process.exit(1);
   }
 }

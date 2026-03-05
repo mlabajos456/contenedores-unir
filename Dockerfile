@@ -14,6 +14,6 @@ RUN addgroup -S nodegrp && adduser -S nodeusr -G nodegrp \
 
 USER nodeusr
 
-EXPOSE 3000
+EXPOSE 3400
 
 CMD ["npm", "start"]

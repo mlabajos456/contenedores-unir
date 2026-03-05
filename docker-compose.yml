@@ -1,0 +1,41 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mlabajos/contenedores-lab:latest
+    container_name: node_app
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      MONGO_HOST: mongo
+      MONGO_PORT: "27017"
+      MONGO_USER: labajos
+      MONGO_PASS: labajosmichael
+      MONGO_DB: appdb
+    depends_on:
+      - mongo
+    networks:
+      - app_net
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:8.2-rc
+    container_name: mongo_db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: labajos
+      MONGO_INITDB_ROOT_PASSWORD: labajosmichael
+      MONGO_INITDB_DATABASE: appdb
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app_net
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+
+networks:
+  app_net:
+    driver: bridge

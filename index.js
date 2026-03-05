@@ -9,7 +9,8 @@ app.get("/", (req, res) => {
   res.json({
     service: "contenedores-lab",
     status: "ok",
-    mongodb: mongoose.connection.readyState === 1 ? "connected" : "disconnected"
+    mongodb:
+      mongoose.connection.readyState === 1 ? "connected" : "disconnected",
   });
 });
 
@@ -17,7 +18,7 @@ app.get("/health", (req, res) => {
   const mongoUp = mongoose.connection.readyState === 1;
   res.status(mongoUp ? 200 : 503).json({
     app: "up",
-    mongo: mongoUp ? "up" : "down"
+    mongo: mongoUp ? "up" : "down",
   });
 });
 
